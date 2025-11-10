@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StakeSync - Weekly Update Assistant</title>
+    <link rel="stylesheet" href="/static/css/chatbot.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 StakeSync</h1>
+            <p class="tagline">Your Weekly Update Assistant</p>
+        </header>
+
+        <div class="main-content">
+            <!-- User Selection -->
+            <div id="user-selection" class="section">
+                <h2>Welcome!</h2>
+                <p>Please select or create your account:</p>
+                <div class="form-group">
+                    <label for="user-id">User ID (or leave blank to create new):</label>
+                    <input type="number" id="user-id" placeholder="Enter user ID">
+                </div>
+                <div class="form-group">
+                    <label for="user-name">Name:</label>
+                    <input type="text" id="user-name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email:</label>
+                    <input type="email" id="user-email" placeholder="your@email.com">
+                </div>
+                <button onclick="handleUserSetup()" class="btn btn-primary">Continue</button>
+            </div>
+
+            <!-- Main Interface (hidden initially) -->
+            <div id="main-interface" class="section hidden">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="showTab('submit')">Submit Update</button>
+                    <button class="tab-btn" onclick="showTab('style')">Style Samples</button>
+                    <button class="tab-btn" onclick="showTab('review')">Review Drafts</button>
+                    <button class="tab-btn" onclick="showTab('audience')">Manage Audiences</button>
+                </div>
+
+                <!-- Submit Update Tab -->
+                <div id="submit-tab" class="tab-content active">
+                    <h2>Submit Weekly Update</h2>
+                    <p>Share your raw weekly update. Be as detailed or brief as you like.</p>
+                    <textarea id="update-content" rows="10" placeholder="What happened this week?&#10;&#10;Key achievements, challenges, metrics, upcoming plans..."></textarea>
+                    <button onclick="submitUpdate()" class="btn btn-primary">Submit Update</button>
+                </div>
+
+                <!-- Style Sample Tab -->
+                <div id="style-tab" class="tab-content">
+                    <h2>Upload Writing Samples</h2>
+                    <p>Upload 2-3 samples of your writing to help us match your style.</p>
+                    <textarea id="style-sample" rows="8" placeholder="Paste a sample of your writing here..."></textarea>
+                    <button onclick="uploadStyleSample()" class="btn btn-primary">Upload Sample</button>
+                    <div id="style-profile" class="info-box"></div>
+                </div>
+
+                <!-- Review Drafts Tab -->
+                <div id="review-tab" class="tab-content">
+                    <h2>Review & Approve Drafts</h2>
+                    <div id="updates-list"></div>
+                </div>
+
+                <!-- Manage Audiences Tab -->
+                <div id="audience-tab" class="tab-content">
+                    <h2>Manage Email Lists</h2>
+                    
+                    <div class="audience-group">
+                        <h3>👔 Investors</h3>
+                        <textarea id="investors-emails" rows="3" placeholder="investor1@example.com&#10;investor2@example.com"></textarea>
+                        <button onclick="saveAudience('investors')" class="btn btn-secondary">Save</button>
+                    </div>
+
+                    <div class="audience-group">
+                        <h3>👥 Employees</h3>
+                        <textarea id="employees-emails" rows="3" placeholder="employee1@example.com&#10;employee2@example.com"></textarea>
+                        <button onclick="saveAudience('employees')" class="btn btn-secondary">Save</button>
+                    </div>
+
+                    <div class="audience-group">
+                        <h3>🤝 Partners</h3>
+                        <textarea id="partners-emails" rows="3" placeholder="partner1@example.com&#10;partner2@example.com"></textarea>
+                        <button onclick="saveAudience('partners')" class="btn btn-secondary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script src="/static/js/chatbot.js"></script>
+</body>
+</html>
